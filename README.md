@@ -1,6 +1,8 @@
 # Tic Tac Toe application
 
-Tic Tac Toe game with 3 different AI levels, two player functionality, and mobile optimization. Built with React and hosted with Vercel.
+[Tic Tac Toe game](https://tic-tac-toe-tau-lemon.vercel.app/) with 3 different AI levels, two player functionality, and mobile optimization. Built with [React](https://react.dev/) and hosted with [Vercel](http://vercel.com).
+
+[Demo site](https://tic-tac-toe-tau-lemon.vercel.app/)
 
 ![Image showing the menu screen with 3 AI opponents, 1 human opponent, difficuklty description, and start button](./screenshots/Menu.png)
 
