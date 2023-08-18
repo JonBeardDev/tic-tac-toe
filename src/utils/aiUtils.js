@@ -1,5 +1,12 @@
 import calculateWinner from "./calculateWinner";
 
+/**
+ * Plays a move in a random empty square
+ * @param {*} currentBoard 
+ * The board array in its existing state
+ * @returns 
+ * Updated board array following AI move
+ */
 export function easyAI(currentBoard) {
   // Find empty squares
   const emptySquares = currentBoard
@@ -15,6 +22,13 @@ export function easyAI(currentBoard) {
   return newBoard;
 }
 
+/**
+ * Plays a move in a random empty square UNLESS there is a winning move available for either player
+ * @param {*} currentBoard 
+ * The board array in its existing state
+ * @returns 
+ * Updated board array following AI move 
+ */
 export function mediumAI(currentBoard) {
   // Find empty squares
   const emptySquares = currentBoard
@@ -50,6 +64,13 @@ export function mediumAI(currentBoard) {
   return newBoard;
 }
 
+/**
+ * Finds the best available move and plays it using minimax function
+ * @param {*} currentBoard 
+ * The board array in its existing state
+ * @returns 
+ * Updated board array following AI move
+ */
 export function impossibleAI(currentBoard) {
   const emptySquares = currentBoard
     .map((square, index) => (square === null ? index : null))
@@ -86,6 +107,17 @@ export function impossibleAI(currentBoard) {
   return newBoard;
 }
 
+/**
+ * Assigns a score to a given move, maximizing for AI move and minimizing for player move
+ * @param {*} board 
+ * Board with the simulated move
+ * @param {*} depth 
+ * Current depth of the game being explored by the AI
+ * @param {*} isMaximizingPlayer 
+ * Boolean to determine if maximizing score (AI) or minimizing (player)
+ * @returns 
+ * best score of the move
+ */
 function minimax(board, depth, isMaximizingPlayer) {
   const winner = calculateWinner(board);
   if (winner === "X") {

@@ -1,6 +1,16 @@
 import React from "react";
 import Square from "./Square";
 
+/**
+ * Defines board layout with three rows of squares
+ * @param squares
+ * the squares of the current board situation
+ * @param onClick
+ * click handler function for the squares
+ * @param enableSquares
+ * Boolean value to prevent player clicking squares when not their turn
+ * @returns {JSX.Element}
+ */
 function Board({ squares, onClick, enableSquares }) {
   const renderSquare = (i) => {
     return <Square value={squares[i]} onClick={() => enableSquares && onClick(i)} />;

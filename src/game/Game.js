@@ -18,6 +18,10 @@ import {
 import "./Game.css";
 import { easyAI, mediumAI, impossibleAI } from "../utils/aiUtils";
 
+/**
+ * Game screen layout and controller
+ * @returns {JSX.Element}
+ */
 function Game() {
   const history = useHistory();
   const startPlayer = Math.floor(Math.random() * 2) + 1;
@@ -36,19 +40,20 @@ function Game() {
   const [player2Wins, setPlayer2Wins] = useState(0);
   const [ties, setTies] = useState(0);
 
+  // Set AI/Player 2 images and name based on difficulty level
   const opponentData = {
     Easy: { img: rabbit, select: rabbit_select, name: "Bad Bunny" },
     Medium: { img: fox, select: fox_select, name: "Sly Fox" },
     Impossible: { img: owl, select: owl_select, name: "Wise Owl" },
     Human: { img: squirrel, select: squirrel_select, name: "Player 2" },
   };
-
   const {
     img: opponentImg,
     select: opponentSelect,
     name: opponentName,
   } = opponentData[difficulty];
 
+  // Sets relevant AI based on difficulty level
   const aiFunctions = useMemo(
     () => ({
       Easy: easyAI,
@@ -58,6 +63,7 @@ function Game() {
     []
   );
 
+  // AI first move
   const aiMove = useCallback(
     (currentBoard) => {
       const aiFunction = aiFunctions[difficulty];
@@ -71,6 +77,7 @@ function Game() {
     [aiFunctions, difficulty, setBoard]
   );
 
+  // Makes AI first move, in conjunction with above callback function, if AI has opening move
   useEffect(() => {
     if (aiStart) {
       setAIStart(false);
@@ -83,8 +90,10 @@ function Game() {
     }
   }, [aiStart, board, aiMove]);
 
+  // Square click handler - places player move
   const handleClick = (index) => {
     if (!board[index] && !gameOver) {
+      // Disable squares until AI has taken its turn
       if (difficulty !== "Human") {
         setEnableSquares(false);
       }
@@ -92,6 +101,7 @@ function Game() {
       newBoard[index] = turn === 1 ? "O" : "X";
       setBoard(newBoard);
 
+      // Determin if game is over
       let winner = calculateWinner(newBoard);
       let isTie = newBoard.every((square) => square !== null);
       let switchTurns = true;
@@ -120,9 +130,11 @@ function Game() {
         switchTurns = false;
       }
 
+      // If game isn't over, switch to player 2
       if (switchTurns) {
         setTurn(turn === 1 ? 2 : 1);
 
+        // IF AI opponent, make AI move based on applicable AI function
         if (difficulty !== "Human") {
           setTimeout(() => {
             const aiBoard = aiMove(newBoard);
@@ -138,6 +150,7 @@ function Game() {
               setWinnerText("It's a tie!");
               setGameOver(true);
             } else {
+              // If game isn't over, switch to player and enable squares
               setTurn(1);
               setEnableSquares(true);
             }
@@ -147,6 +160,7 @@ function Game() {
     }
   };
 
+  // Reset game conditions
   const newGameButton = () => {
     const newStartPlayer = Math.floor(Math.random() * 2) + 1;
     setTurn(newStartPlayer);

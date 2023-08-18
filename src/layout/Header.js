@@ -2,7 +2,7 @@ import React from "react";
 import "./Header.css";
 
 /**
- * Displays the header jumbotron and navbar (via Menu component)
+ * Displays the header jumbotron
  * @returns {JSX.Element}
  */
 function Header() {

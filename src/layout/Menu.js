@@ -10,6 +10,10 @@ import human_select from "../images/human-select.png";
 import "./Menu.css";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
+/**
+ * Defines Menu page
+ * @returns 
+ */
 function Menu() {
   const history = useHistory();
   const [opponent, setOpponent] = useState("rabbit");
@@ -18,6 +22,7 @@ function Menu() {
   );
   const [difficulty, setDifficulty] = useState("Easy");
 
+  // Set difficulty level and description based on selected opponent
   const clickHandler = (target) => {
     setOpponent(target);
     switch (target) {

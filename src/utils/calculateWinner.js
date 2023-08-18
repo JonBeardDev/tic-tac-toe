@@ -1,3 +1,10 @@
+/**
+ * Determines if current board is in a winning state
+ * @param {*} squares 
+ * Array showing the values in the squares of the current board
+ * @returns 
+ * Either the winning player ("O" or "X") or null if game is not yet won
+ */
 export default function calculateWinner(squares) {
   const lines = [
     [0, 1, 2],
