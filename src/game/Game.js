@@ -63,7 +63,7 @@ function Game() {
     []
   );
 
-  // AI first move
+  // AI move
   const aiMove = useCallback(
     (currentBoard) => {
       const aiFunction = aiFunctions[difficulty];
